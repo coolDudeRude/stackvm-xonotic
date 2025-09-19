@@ -9,7 +9,7 @@ See stackvm-xonotic/examples, for example programs.
 To test the program included in the example folder, do the following:
  - Make sure the xSVM program is loaded, do this by executing stackvm.cfg.
  - Execute the program to run, in this example do "exec stackvm-xonotic/examples/main.cfg" to load main.cfg
- - Use the "run" alias to initiate program execution.
+ - Use the "vm.run" alias to initiate program execution.
 
 ### About programs in examples folder
  - mainloader.cfg: Sits at the top of the program, loads the main function.

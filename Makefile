@@ -9,6 +9,10 @@ OUTPUT=stackvm.cfg
 STRIP=-e '/^\/\/\*/d' # remove lines starting with '//*'
 STRIP+=-e '/^$$/d' # remove empty lines, don't need them anyways.
 
+# Enable dynamic programming interface by default.
+# As it's also needed by the scripts in examples folder.
+ENABLE_DPI=true
+
 
 ifeq ($(NO_CLOCK),true)
 	M4FLAGS+=-DNO_CLOCK

@@ -18,9 +18,3 @@ jobs:
     - name: Build Script
       run: make
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: stackvm
-        path: stackvm.cfg
-        retention-days: 30

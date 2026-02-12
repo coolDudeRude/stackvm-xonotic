@@ -24,7 +24,7 @@ jobs:
 
       - name: Build No DPI
         run: |
-          make NO_DPI=true
+          make ENABLE_DPI=false
           mv stackvm.cfg stackvm-nodpi.cfg
 
       - name: Upload to Release

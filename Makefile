@@ -1,9 +1,7 @@
 M4=m4
 
 M4FLAGS=-I src/
-
 SOURCE=src/vm.cfg
-OUTPUT=stackvm.cfg
 
 # Use sed to remove unwanted comments and empty space
 STRIP=-e '/^\/\/\*/d' # remove lines starting with '//*'
@@ -11,7 +9,16 @@ STRIP+=-e '/^$$/d' # remove empty lines, don't need them anyways.
 
 # Enable dynamic programming interface by default.
 # As it's also needed by the scripts in examples folder.
-ENABLE_DPI=true
+ENABLE_DPI ?= true
+
+# Don't use the defer command
+NO_CLOCK ?= false
+
+# Use centerprint, instead of echo
+USE_CPRINT ?= false
+
+# Enable extra logging
+DEBUG_MODE ?= false
 
 
 ifeq ($(NO_CLOCK),true)
@@ -31,10 +38,10 @@ ifeq ($(ENABLE_DPI),true)
 endif
 
 
-$(OUTPUT): $(wildcard src/*.cfg)
-	$(M4) $(M4FLAGS) $(SOURCE) | sed $(STRIP) > $(OUTPUT)
+stackvm.cfg: $(wildcard src/*.cfg)
+	$(M4) $(M4FLAGS) $(SOURCE) | sed $(STRIP) > stackvm.cfg
 
 .PHONY: clean
 clean:
-	rm $(OUTPUT)
+	rm -f stackvm.cfg
 

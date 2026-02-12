@@ -1,0 +1,39 @@
+name: Publish Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Stable
+        run: |
+          make
+          mv stackvm.cfg stackvm-stable.cfg
+
+      - name: Build Debug
+        run: |
+          make DEBUG_MODE=true
+          mv stackvm.cfg stackvm-debug.cfg
+
+      - name: Build No DPI
+        run: |
+          make NO_DPI=true
+          mv stackvm.cfg stackvm-nodpi.cfg
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            stackvm-stable.cfg
+            stackvm-debug.cfg
+            stackvm-nodpi.cfg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

@@ -15,7 +15,11 @@ pre_bump_hooks = [
   "echo 'define(__patch__, {{version.patch}})' >> src/version.m4",
 ]
 post_bump_hooks = []
-pre_package_bump_hooks = []
+pre_package_bump_hooks = [
+  "echo 'define(__{{package}}_major__, {{version.major}})' > version.m4",
+  "echo 'define(__{{package}}_minor__, {{version.minor}})' >> version.m4",
+  "echo 'define(__{{package}}_patch__, {{version.patch}})' >> version.m4",
+]
 post_package_bump_hooks = []
 
 [git_hooks]
@@ -34,4 +38,4 @@ authors = [
 [bump_profiles]
 
 [packages]
-libdirectives = { path = "src/directives.cfg", public_api = true }
+libdirectives = { path = "src/libdirectives", public_api = true }

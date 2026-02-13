@@ -34,3 +34,4 @@ authors = [
 [bump_profiles]
 
 [packages]
+libdirectives = { path = "src/directives.cfg", public_api = true }

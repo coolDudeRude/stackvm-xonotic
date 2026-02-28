@@ -38,7 +38,7 @@ ifeq ($(ENABLE_DPI),true)
 endif
 
 
-stackvm.cfg: $(wildcard src/*.cfg)
+stackvm.cfg: $(wildcard src/*.cfg) $(wildcard src/libdirectives/*.cfg)
 	$(M4) $(M4FLAGS) $(SOURCE) | sed $(STRIP) > stackvm.cfg
 
 .PHONY: clean

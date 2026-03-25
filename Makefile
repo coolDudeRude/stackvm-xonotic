@@ -9,6 +9,7 @@ VM_ENABLE_DPI ?= true
 VM_NO_CLOCK   ?= false
 VM_USE_CPRINT ?= false
 VM_DEBUG_MODE ?= false
+VM_USE_RETURN_STACK ?= true
 
 M4FLAGS	:= -I $(SRC_DIR)
 
@@ -23,6 +24,9 @@ ifeq ($(VM_USE_CPRINT),true)
 endif
 ifeq ($(VM_DEBUG_MODE),true)
 	M4FLAGS += -DDEBUG_MODE
+endif
+ifeq ($(VM_USE_RETURN_STACK),true)
+	M4FLAGS += -DUSE_RETURN_STACK
 endif
 
 # Remove Comments and whitespace.
@@ -48,8 +52,9 @@ help: ## Show this message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 	@echo ""
 	@echo "Variables (Current Values):"
-	@echo "	VM_ENABLE_DPI	= $(VM_ENABLE_DPI)"
-	@echo "	VM_NO_CLOCK	= $(VM_NO_CLOCK)"
-	@echo "	VM_USE_CPRINT	= $(VM_USE_CPRINT)"
-	@echo "	VM_DEBUG_MODE	= $(VM_DEBUG_MODE)"
+	@echo "	VM_ENABLE_DPI = $(VM_ENABLE_DPI)"
+	@echo "	VM_NO_CLOCK   = $(VM_NO_CLOCK)"
+	@echo "	VM_USE_CPRINT = $(VM_USE_CPRINT)"
+	@echo "	VM_DEBUG_MODE = $(VM_DEBUG_MODE)"
+	@echo "	VM_USE_RETURN_STACK = $(VM_USE_RETURN_STACK)"
 

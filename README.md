@@ -16,7 +16,7 @@ cd stackvm-xonotic && make
 Some sample programs are included in the [examples folder](./examples).
 These use `DPI` (Dynamic Programming Interface). This allows users to write
 programs in game. However it can be very slow. There is also an assembler
-for the virtual machine (See: [vasm](https://github.com/coolDudeRude/vasm))
+for the virtual machine (See: [xivasm](https://github.com/coolDudeRude/xivasm))
 
 ### About programs in examples folder
 

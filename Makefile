@@ -35,15 +35,12 @@ SED_STRIP := -e '/^\/\/\*/d' -e '/^$$/d'
 all: $(OUTPUT) ## Build the virtual machine script (Default)
 
 $(OUTPUT): $(VM_DEPS)
-	@echo "Building $@..."
-	@$(M4) $(M4FLAGS) $(SRC_DIR)/vm.cfg | sed $(SED_STRIP) > $@
-	@echo "Build Complete."
+	$(M4) $(M4FLAGS) $(SRC_DIR)/vm.cfg | sed $(SED_STRIP) > $@
 
 .PHONY: all clean help
 
 clean: ## Remove generated build files
-	@echo "Cleaning up..."
-	@rm -f $(OUTPUT)
+	rm -f $(OUTPUT)
 
 help: ## Show this message
 	@echo "Usage: make [target] [VARIABLE=true|false]"

@@ -16,10 +16,16 @@ jobs:
       - name: Build Stable
         run: make
 
-      - name: Upload to Release
+      - name: Upload to Release (GitHub)
+        if: github.server_url == 'https://github.com'
         uses: softprops/action-gh-release@v1
         with:
           files: stackvm.cfg
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to Release (Gitea)
+        if: github.server_url != 'https://github.com'
+        uses: akkuman/gitea-release-action@v1
+        with:
+          files:
+            stackvm.cfg
 
